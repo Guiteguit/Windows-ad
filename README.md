@@ -47,23 +47,46 @@ DNS obligatoire pour toutes les machines membres :
 
 ## Planning global
 
+Le planning ci-dessous est pensé pour une journée de 7h environ, avec des pauses et des temps de débrief.
+
 ### Jour 1 — Build & administration AD
 
-- TP00 — Validation du lab
-- TP01 — Déploiement du domaine Active Directory
-- TP02 — Jointure SRV01 / CLIENT01
-- TP03 — OU, utilisateurs, groupes, AGDLP
-- TP04 — Serveur de fichiers, SMB, NTFS
-- Challenges : DNS, AGDLP, review AD
+- TP00 — Validation du lab : 45 min
+- TP01 — Déploiement du domaine Active Directory : 1h15
+- TP02 — Jointure SRV01 / CLIENT01 : 1h
+- TP03 — OU, utilisateurs, groupes, AGDLP : 1h30
+- TP04 — Serveur de fichiers, SMB, NTFS : 1h30
+- Challenges : DNS, AGDLP, review AD : 30 à 45 min selon l'avancement
 
 ### Jour 2 — GPO, sécurité, audit, réplication
 
-- TP05 — GPO de sécurisation poste
-- TP06 — Politique mot de passe et verrouillage
-- TP07 — Audit AD et investigation Blue Team
-- TP08 — DC02, réplication et disponibilité
-- TP09 — Maintenance, sauvegarde et dépannage
-- Challenges : GPO, compte suspect, réplication
+- TP05 — GPO de sécurisation poste : 1h15
+- TP06 — Politique mot de passe et verrouillage : 45 min
+- TP07 — Audit AD et investigation Blue Team : 1h30
+- TP08 — DC02, réplication et disponibilité : 1h15
+- TP09 — Maintenance, sauvegarde et dépannage : 45 min
+- Challenges : GPO, compte suspect, réplication : 30 à 45 min selon l'avancement
+
+## Priorités pédagogiques
+
+Si le groupe prend du retard, priorisez dans cet ordre :
+
+1. DNS, jointure domaine et validation `nltest`.
+2. OU, comptes séparés et modèle AGDLP.
+3. Permissions SMB/NTFS avec preuves d'accès et de refus.
+4. GPO appliquée et prouvée par `gpresult`.
+5. Audit des événements AD sensibles.
+6. Réplication DC02 et maintenance.
+
+Les challenges peuvent être utilisés comme exercices complets ou comme démonstrations guidées si le timing devient serré.
+
+## Note formateur
+
+Une relecture pédagogique et des pistes d'amélioration sont disponibles ici :
+
+```text
+docs/04-retour-formateur-ameliorations.md
+```
 
 ## Méthode attendue
 
