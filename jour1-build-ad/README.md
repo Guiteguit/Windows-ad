@@ -33,8 +33,13 @@ Au début du jour 1, lancez donc les installations en parallèle autant que poss
 Dimensionnement conseillé pendant les installations :
 
 ```text
-2 vCPU et 4 Go RAM par VM
+DC01      2 vCPU   4 Go RAM
+DC02      2 vCPU   4 Go RAM
+SRV01     2 vCPU   4 Go RAM
+CLIENT01  2 vCPU   4 Go RAM minimum, 6 Go RAM si possible
 ```
+
+Si l'hôte le permet, `CLIENT01` peut être monté temporairement à 4 vCPU pendant l'installation de Windows 11. Repassez ensuite à 2 vCPU après installation pour éviter de saturer l'hôte.
 
 Après installation et snapshot de base, vous pouvez réduire les VM secondaires si l'hôte manque de RAM :
 
@@ -42,10 +47,10 @@ Après installation et snapshot de base, vous pouvez réduire les VM secondaires
 DC01      2 vCPU   4 Go RAM recommandés
 DC02      2 vCPU   2 Go RAM possibles
 SRV01     2 vCPU   2 Go RAM possibles
-CLIENT01  2 vCPU   4 Go RAM recommandés
+CLIENT01  2 vCPU   4 Go RAM minimum, 6 Go RAM si possible
 ```
 
-En pratique, gardez `DC01` et `CLIENT01` plus confortables, puis réduisez surtout `DC02` et éventuellement `SRV01`.
+En pratique, gardez `DC01` et `CLIENT01` plus confortables, puis réduisez surtout `DC02` et éventuellement `SRV01`. Évitez de mettre 4 vCPU sur toutes les VM : 2 vCPU suffisent pour les serveurs du lab.
 
 ## Résultat attendu fin Jour 1
 

@@ -17,10 +17,12 @@ Pendant les installations Windows, utilisez de préférence :
 DC01      2 vCPU   4 Go RAM
 DC02      2 vCPU   4 Go RAM
 SRV01     2 vCPU   4 Go RAM
-CLIENT01  2 vCPU   4 Go RAM
+CLIENT01  2 vCPU   4 Go RAM minimum, 6 Go RAM si possible
 ```
 
 Ce dimensionnement accélère surtout l'installation initiale, les redémarrages et les mises à jour.
+
+Pour `CLIENT01`, vous pouvez monter temporairement à 4 vCPU pendant l'installation de Windows 11 si l'hôte le permet. Repassez ensuite à 2 vCPU pour éviter de saturer la machine hôte quand plusieurs VM tournent en même temps.
 
 Après installation, une fois les systèmes stabilisés et les snapshots de base réalisés, vous pouvez réduire les VM les moins sollicitées :
 
@@ -28,13 +30,14 @@ Après installation, une fois les systèmes stabilisés et les snapshots de base
 DC01      2 vCPU   4 Go RAM recommandés
 DC02      2 vCPU   2 Go RAM possibles
 SRV01     2 vCPU   2 Go RAM possibles
-CLIENT01  2 vCPU   4 Go RAM recommandés
+CLIENT01  2 vCPU   4 Go RAM minimum, 6 Go RAM si possible
 ```
 
 Remarques :
 
 - `DC01` reste la machine centrale du lab : gardez 4 Go si l'hôte le permet.
-- `CLIENT01` sous Windows 11 est souvent la VM la plus lente à installer et à mettre à jour : gardez 4 Go si possible et ne la gardez jamais pour la fin.
+- `CLIENT01` sous Windows 11 est souvent la VM la plus lente à installer et à mettre à jour : gardez au moins 4 Go, passez à 6 Go si possible et ne la gardez jamais pour la fin.
+- 2 vCPU suffisent pour les serveurs du lab ; évitez de mettre 4 vCPU partout, car cela peut ralentir l'ensemble de l'hôte.
 - `DC02` et `SRV01` peuvent fonctionner avec 2 Go dans ce lab, surtout après installation des rôles.
 - Si l'hôte n'a que 16 Go de RAM, ne démarrez pas forcément toutes les VM en même temps pendant les phases lourdes.
 

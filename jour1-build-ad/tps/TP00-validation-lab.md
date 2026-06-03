@@ -59,20 +59,24 @@ Ordre conseillé :
 Pendant les installations, dimensionnez les VM avec :
 
 ```text
-2 vCPU
-4 Go RAM
+DC01      2 vCPU   4 Go RAM
+DC02      2 vCPU   4 Go RAM
+SRV01     2 vCPU   4 Go RAM
+CLIENT01  2 vCPU   4 Go RAM minimum, 6 Go RAM si possible
 ```
+
+Si l'hôte le permet, vous pouvez attribuer temporairement 4 vCPU à `CLIENT01` pendant l'installation de Windows 11. Repassez ensuite à 2 vCPU après installation pour éviter de ralentir l'ensemble du lab.
 
 Après installation, une fois les snapshots de base réalisés, vous pouvez réduire la RAM de certaines VM si l'hôte est limité :
 
 ```text
-DC01      4 Go RAM recommandés
-CLIENT01  4 Go RAM recommandés
-DC02      2 Go RAM possibles
-SRV01     2 Go RAM possibles
+DC01      2 vCPU   4 Go RAM recommandés
+CLIENT01  2 vCPU   4 Go RAM minimum, 6 Go RAM si possible
+DC02      2 vCPU   2 Go RAM possibles
+SRV01     2 vCPU   2 Go RAM possibles
 ```
 
-Ne réduisez pas la RAM pendant une installation ou pendant une mise à jour Windows.
+Ne réduisez pas la RAM ou le nombre de vCPU pendant une installation ou pendant une mise à jour Windows. Ne mettez pas 4 vCPU sur toutes les VM : cela peut saturer l'hôte et ralentir tout le lab.
 
 ## Point important : DNS et Active Directory
 
