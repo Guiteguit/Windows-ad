@@ -235,6 +235,15 @@ Si le ping échoue, vérifiez :
 - que le pare-feu Windows ne bloque pas temporairement l'ICMP ;
 - que vous testez bien l'adresse de la carte réseau du lab.
 
+Si le pare-feu bloque le ping, vous pouvez autoriser l'ICMPv4 sur les machines du lab avec PowerShell en administrateur :
+
+```powershell
+New-NetFirewallRule -DisplayName "LAB - Autoriser ping entrant ICMPv4" -Direction Inbound -Protocol ICMPv4 -IcmpType 8 -Action Allow -Profile Any
+New-NetFirewallRule -DisplayName "LAB - Autoriser ping sortant ICMPv4" -Direction Outbound -Protocol ICMPv4 -IcmpType 8 -Action Allow -Profile Any
+```
+
+Ces règles sont prévues pour le lab. En production, l'ouverture ICMP doit être décidée selon la politique de sécurité de l'organisation.
+
 ### 8. Vérifier le DNS configuré
 
 Sur chaque VM, vérifiez les serveurs DNS configurés :

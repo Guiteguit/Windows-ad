@@ -9,6 +9,13 @@ nslookup lab.local
 nltest /dsgetdc:lab.local
 ```
 
+Autoriser le ping ICMPv4 dans le pare-feu Windows :
+
+```powershell
+New-NetFirewallRule -DisplayName "LAB - Autoriser ping entrant ICMPv4" -Direction Inbound -Protocol ICMPv4 -IcmpType 8 -Action Allow -Profile Any
+New-NetFirewallRule -DisplayName "LAB - Autoriser ping sortant ICMPv4" -Direction Outbound -Protocol ICMPv4 -IcmpType 8 -Action Allow -Profile Any
+```
+
 ## Domaine
 
 ```cmd
