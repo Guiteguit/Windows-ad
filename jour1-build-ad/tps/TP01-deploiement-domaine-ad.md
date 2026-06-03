@@ -179,6 +179,39 @@ nslookup lab.local
 
 Vous devez obtenir une réponse associée à `192.168.56.10`.
 
+### Point de compréhension : les enregistrements DNS SRV
+
+Active Directory ne se contente pas de résoudre un nom comme `dc01.lab.local`. Les machines du domaine doivent aussi découvrir quels serveurs fournissent certains services AD.
+
+Pour cela, AD publie des enregistrements DNS de type `SRV`.
+
+Un enregistrement `SRV` indique :
+
+```text
+service disponible
+protocole utilisé
+domaine concerné
+serveur qui fournit le service
+port utilisé
+priorité / poids
+```
+
+Exemples de services recherchés par les postes et serveurs membres :
+
+```text
+LDAP      pour interroger l'annuaire Active Directory
+Kerberos  pour l'authentification
+GC        pour le catalogue global
+```
+
+Concrètement, lorsqu'un poste veut joindre le domaine ou appliquer des GPO, il demande au DNS :
+
+```text
+Quel contrôleur de domaine peut répondre pour lab.local ?
+```
+
+Si les enregistrements `SRV` sont absents ou incorrects, le domaine peut exister mais les clients ne savent pas correctement trouver les contrôleurs de domaine. Cela provoque souvent des erreurs de jointure, d'ouverture de session, de GPO ou de réplication.
+
 Vérifiez également les enregistrements SRV utilisés par Active Directory :
 
 ```cmd
