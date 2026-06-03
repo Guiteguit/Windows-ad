@@ -31,6 +31,49 @@ SRV01     192.168.56.20   Futur serveur de fichiers
 CLIENT01  192.168.56.30   Poste client Windows 11
 ```
 
+## Organisation des installations
+
+Si les VM ne sont pas déjà installées, lancez les installations en parallèle dès le début du créneau.
+
+Attention : l'installation de `CLIENT01` sous Windows 11 peut prendre 2 à 3 heures selon la puissance de l'hôte, le type de disque, les mises à jour et l'hyperviseur. Cette VM doit être lancée immédiatement le matin.
+
+Si `CLIENT01` n'est pas prêt assez tôt, cela peut nuire à la suite du TP : jointure au domaine, tests utilisateur, GPO, accès aux partages SMB et validation du poste client.
+
+Priorité forte :
+
+```text
+CLIENT01
+```
+
+Windows 11 est souvent plus long à installer et à stabiliser que Windows Server dans ce lab. Il peut demander plus d'étapes de configuration, de redémarrages ou de mises à jour. Ne gardez donc jamais `CLIENT01` pour la fin.
+
+Ordre conseillé :
+
+```text
+1. CLIENT01  Windows 11
+2. DC01      Windows Server 2019
+3. SRV01     Windows Server 2019
+4. DC02      Windows Server 2019
+```
+
+Pendant les installations, dimensionnez les VM avec :
+
+```text
+2 vCPU
+4 Go RAM
+```
+
+Après installation, une fois les snapshots de base réalisés, vous pouvez réduire la RAM de certaines VM si l'hôte est limité :
+
+```text
+DC01      4 Go RAM recommandés
+CLIENT01  4 Go RAM recommandés
+DC02      2 Go RAM possibles
+SRV01     2 Go RAM possibles
+```
+
+Ne réduisez pas la RAM pendant une installation ou pendant une mise à jour Windows.
+
 ## Point important : DNS et Active Directory
 
 Active Directory dépend fortement du DNS. Les postes et serveurs membres ne cherchent pas un domaine AD avec une simple adresse IP : ils utilisent des enregistrements DNS spécifiques, notamment les enregistrements SRV.

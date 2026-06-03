@@ -30,9 +30,9 @@ windows-ad-m1-cyber-2jours-etudiant/
 ## Architecture de lab
 
 ```text
-DC01      Windows Server 2022   AD DS / DNS      192.168.56.10
-DC02      Windows Server 2022   DC secondaire    192.168.56.11
-SRV01     Windows Server 2022   File Server      192.168.56.20
+DC01      Windows Server 2019   AD DS / DNS      192.168.56.10
+DC02      Windows Server 2019   DC secondaire    192.168.56.11
+SRV01     Windows Server 2019   File Server      192.168.56.20
 CLIENT01  Windows 11 Pro        Poste client     192.168.56.30
 Réseau    Host-Only             192.168.56.0/24
 Domaine   lab.local
