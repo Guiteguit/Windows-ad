@@ -93,7 +93,7 @@ Configuration ordinateur (Computer Configuration)
     Modèles d'administration (Administrative Templates)
       Système (System)
         Stratégie de groupe (Group Policy)
-          Configurer le mode de traitement par boucle de rappel de la stratégie de groupe utilisateur
+          Configurer le mode de traitement par bouclage de la stratégie de groupe utilisateur
           (Configure user Group Policy loopback processing mode)
 ```
 
@@ -111,8 +111,9 @@ Pare-feu Windows :
 ```text
 Configuration ordinateur (Computer Configuration)
   Stratégies (Policies)
-    Pare-feu Windows Defender (Windows Defender Firewall)
-      Profil du domaine (Domain Profile)
+    Paramètres Windows (Windows Settings)
+      Pare-feu Windows Defender (Windows Defender Firewall)
+        Profil du domaine (Domain Profile)
 ```
 
 Activez le pare-feu pour le profil domaine.
@@ -134,7 +135,7 @@ Configurez :
 Ouverture de session interactive : titre du message pour les utilisateurs tentant de se connecter
 (Interactive logon: Message title for users attempting to log on)
 
-Ouverture de session interactive : texte du message pour les utilisateurs tentant de se connecter
+Ouverture de session interactive : contenu du message pour les utilisateurs tentant de se connecter
 (Interactive logon: Message text for users attempting to log on)
 ```
 
