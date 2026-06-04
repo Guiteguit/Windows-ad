@@ -23,7 +23,7 @@ Configurer une politique de mot de passe et de verrouillage cohérente pour le d
 
 ## Point important
 
-Dans Active Directory, la politique de mot de passe par défaut du domaine se configure au niveau du domaine, généralement via `Default Domain Policy` ou une GPO équivalente liée au domaine.
+Dans Active Directory, la politique de mot de passe par défaut du domaine se configure au niveau du domaine, généralement via `Stratégie de domaine par défaut` (`Default Domain Policy`) ou une GPO équivalente liée au domaine.
 
 Une GPO de mot de passe liée à une OU utilisateur classique ne modifie pas la politique de mot de passe du domaine pour tous les comptes.
 
@@ -31,12 +31,12 @@ Une GPO de mot de passe liée à une OU utilisateur classique ne modifie pas la 
 
 ### 1. Ouvrir la politique du domaine
 
-Sur `DC01`, ouvrez `Group Policy Management`.
+Sur `DC01`, ouvrez `Gestion de stratégie de groupe` (Group Policy Management).
 
 Éditez :
 
 ```text
-Default Domain Policy
+Stratégie de domaine par défaut (Default Domain Policy)
 ```
 
 ou une GPO dédiée liée directement à :
@@ -50,20 +50,21 @@ lab.local
 Chemin :
 
 ```text
-Computer Configuration
-  Policies
-    Windows Settings
-      Security Settings
-        Account Policies
-          Password Policy
+Configuration ordinateur (Computer Configuration)
+  Stratégies (Policies)
+    Paramètres Windows (Windows Settings)
+      Paramètres de sécurité (Security Settings)
+        Stratégies de comptes (Account Policies)
+          Stratégie de mot de passe (Password Policy)
 ```
 
 Configurez :
 
 ```text
-Minimum password length         : 12
-Password must meet complexity   : Enabled
-Enforce password history        : 10
+Longueur minimale du mot de passe (Minimum password length)        : 12
+Le mot de passe doit respecter des exigences de complexité
+(Password must meet complexity requirements)                       : Activé (Enabled)
+Conserver l'historique des mots de passe (Enforce password history): 10
 ```
 
 ### 3. Configurer le verrouillage
@@ -71,20 +72,21 @@ Enforce password history        : 10
 Chemin :
 
 ```text
-Computer Configuration
-  Policies
-    Windows Settings
-      Security Settings
-        Account Policies
-          Account Lockout Policy
+Configuration ordinateur (Computer Configuration)
+  Stratégies (Policies)
+    Paramètres Windows (Windows Settings)
+      Paramètres de sécurité (Security Settings)
+        Stratégies de comptes (Account Policies)
+          Stratégie de verrouillage du compte (Account Lockout Policy)
 ```
 
 Configurez :
 
 ```text
-Account lockout threshold       : 3 invalid logon attempts
-Account lockout duration        : 15 minutes
-Reset account lockout counter   : 15 minutes
+Seuil de verrouillage du compte (Account lockout threshold)                : 3 tentatives non valides
+Durée de verrouillage du compte (Account lockout duration)                 : 15 minutes
+Réinitialiser le compteur de verrouillages du compte après
+(Reset account lockout counter after)                                      : 15 minutes
 ```
 
 ### 4. Appliquer et vérifier
@@ -144,8 +146,8 @@ Si le compte ne se verrouille pas :
 
 Déposez dans votre compte rendu :
 
-- une capture des paramètres Password Policy ;
-- une capture des paramètres Account Lockout Policy ;
+- une capture des paramètres Stratégie de mot de passe (Password Policy) ;
+- une capture des paramètres Stratégie de verrouillage du compte (Account Lockout Policy) ;
 - une capture de `net accounts` ;
 - une capture de `Search-ADAccount -LockedOut` montrant `user.rh1` verrouillé ;
 - une capture ou note montrant le déverrouillage.

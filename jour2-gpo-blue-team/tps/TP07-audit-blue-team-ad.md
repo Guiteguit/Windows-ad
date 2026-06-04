@@ -41,7 +41,7 @@ Selon le groupe modifié, Windows peut produire d'autres IDs proches, par exempl
 
 ### 1. Créer la GPO d'audit
 
-Dans `Group Policy Management`, créez une GPO nommée :
+Dans `Gestion de stratégie de groupe` (Group Policy Management), créez une GPO nommée :
 
 ```text
 GPO_AUDIT_AD
@@ -58,21 +58,21 @@ lab.local
 Dans la GPO :
 
 ```text
-Computer Configuration
-  Policies
-    Windows Settings
-      Security Settings
-        Advanced Audit Policy Configuration
-          Audit Policies
+Configuration ordinateur (Computer Configuration)
+  Stratégies (Policies)
+    Paramètres Windows (Windows Settings)
+      Paramètres de sécurité (Security Settings)
+        Configuration avancée de la stratégie d'audit (Advanced Audit Policy Configuration)
+          Stratégies d'audit (Audit Policies)
 ```
 
-Activez en `Success and Failure` :
+Activez en `Succès et échec` (`Success and Failure`) :
 
 ```text
-Account Logon
-Account Management
-Logon/Logoff
-Policy Change
+Ouverture de session de compte (Account Logon)
+Gestion des comptes (Account Management)
+Ouverture/Fermeture de session (Logon/Logoff)
+Changement de stratégie (Policy Change)
 ```
 
 ### 3. Appliquer et vérifier l'audit

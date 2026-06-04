@@ -18,8 +18,8 @@ Vous devez distinguer :
 - lien GPO absent ou désactivé ;
 - filtrage de sécurité incorrect ;
 - héritage bloqué ;
-- confusion User Configuration / Computer Configuration ;
-- loopback absent ;
+- confusion Configuration utilisateur (User Configuration) / Configuration ordinateur (Computer Configuration) ;
+- boucle de rappel (loopback) absente ;
 - problème DNS ou de jointure domaine.
 
 ## Contraintes
@@ -56,8 +56,8 @@ Get-GPInheritance -Target "OU=Workstations,OU=_Postes,DC=lab,DC=local"
 3. Vérifier que la GPO est liée à cette OU.
 4. Vérifier que le lien est actif.
 5. Vérifier le filtrage de sécurité.
-6. Vérifier si les paramètres sont User ou Computer.
-7. Vérifier le loopback si des paramètres utilisateur sont attendus.
+6. Vérifier si les paramètres sont côté utilisateur ou ordinateur (User / Computer).
+7. Vérifier la boucle de rappel (loopback) si des paramètres utilisateur sont attendus.
 8. Corriger uniquement la cause identifiée.
 9. Prouver l'application avec `gpresult`.
 
@@ -84,4 +84,4 @@ Rédigez un rapport d'incident avec :
 
 1. Pourquoi `gpupdate /force` ne garantit-il pas qu'une GPO est applicable ?
 2. Quelle commande permet de voir les GPO réellement appliquées ?
-3. Pourquoi le loopback est-il souvent nécessaire dans une OU de postes ?
+3. Pourquoi la boucle de rappel (loopback) est-elle souvent nécessaire dans une OU de postes ?
