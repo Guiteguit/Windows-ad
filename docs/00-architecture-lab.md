@@ -6,7 +6,7 @@
 Réseau LAB : 192.168.56.0/24
 
 DC01      AD DS / DNS         192.168.56.10
-DC02      DC secondaire       192.168.56.11
+DC02      DC additionnel / DNS  192.168.56.11
 SRV01     File Server         192.168.56.20
 CLIENT01  Windows 11 Pro      192.168.56.30
 ```

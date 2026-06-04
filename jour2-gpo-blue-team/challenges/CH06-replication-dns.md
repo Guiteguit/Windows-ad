@@ -14,6 +14,8 @@ Votre mission est d'identifier si le problème vient :
 - de la découverte d'un contrôleur de domaine ;
 - d'une configuration réseau incorrecte.
 
+Rappel : dans ce lab, `DC02` doit être un contrôleur de domaine additionnel avec DNS, pas un RODC. Les clients doivent pouvoir utiliser `DC02` comme DNS auxiliaire si `DC01` ne répond plus.
+
 ## Contraintes
 
 - Ne rétrogradez pas `DC02` sans diagnostic.
@@ -28,6 +30,14 @@ Sur `DC02` :
 ```cmd
 ipconfig /all
 nslookup dc01.lab.local
+nslookup dc02.lab.local
+nltest /dsgetdc:lab.local
+```
+
+Sur `CLIENT01` ou `SRV01` :
+
+```cmd
+ipconfig /all
 nslookup dc02.lab.local
 nltest /dsgetdc:lab.local
 ```
@@ -52,16 +62,18 @@ Get-ADDomainController -Filter * | Select-Object HostName, IPv4Address, Site
 2. Vérifier que `DC02` résout `DC01`.
 3. Vérifier que `DC01` résout `DC02`.
 4. Vérifier que `DC02` apparaît comme contrôleur de domaine.
-5. Vérifier la réplication avec `repadmin`.
-6. Lire les erreurs importantes de `dcdiag`.
-7. Corriger la cause identifiée.
-8. Prouver le retour à la normale.
+5. Vérifier que les clients ont `192.168.56.11` en DNS auxiliaire.
+6. Vérifier la réplication avec `repadmin`.
+7. Lire les erreurs importantes de `dcdiag`.
+8. Corriger la cause identifiée.
+9. Prouver le retour à la normale.
 
 ## Résultat attendu après correction
 
 ```text
 nslookup dc02.lab.local fonctionne
 Get-ADDomainController liste DC01 et DC02
+les clients ont DC01 et DC02 comme DNS
 repadmin /replsummary ne montre pas d'échec critique
 cause racine et correction documentées
 ```

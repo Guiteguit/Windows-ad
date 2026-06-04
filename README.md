@@ -31,7 +31,7 @@ windows-ad-m1-cyber-2jours-etudiant/
 
 ```text
 DC01      Windows Server 2019   AD DS / DNS      192.168.56.10
-DC02      Windows Server 2019   DC secondaire    192.168.56.11
+DC02      Windows Server 2019   DC additionnel / DNS  192.168.56.11
 SRV01     Windows Server 2019   File Server      192.168.56.20
 CLIENT01  Windows 11 Pro        Poste client     192.168.56.30
 Réseau    Host-Only             192.168.56.0/24
@@ -39,10 +39,17 @@ Domaine   lab.local
 NetBIOS   LAB
 ```
 
-DNS obligatoire pour toutes les machines membres :
+DNS obligatoire pour toutes les machines membres avant l'ajout de `DC02` :
 
 ```text
 192.168.56.10
+```
+
+Après le TP08, `DC02` devient aussi serveur DNS. Les machines membres doivent alors utiliser deux DNS :
+
+```text
+DNS préféré   : 192.168.56.10
+DNS auxiliaire: 192.168.56.11
 ```
 
 ## Planning global
