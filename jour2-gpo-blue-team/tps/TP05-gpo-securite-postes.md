@@ -184,7 +184,7 @@ Configuration utilisateur (User Configuration)
   Stratégies (Policies)
     Modèles d'administration (Administrative Templates)
       Système (System)
-        Empêcher l'accès à l'invite de commandes
+        Désactiver l'accès à l'invite de commandes
         (Prevent access to the command prompt)
 ```
 
