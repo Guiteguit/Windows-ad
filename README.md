@@ -65,13 +65,14 @@ Le planning ci-dessous est pensé pour une journée de 7h environ, avec des paus
 - TP04 — Serveur de fichiers, SMB, NTFS : 1h30
 - Challenges : DNS, AGDLP, review AD : 30 à 45 min selon l'avancement
 
-### Jour 2 — GPO, sécurité, audit, réplication
+### Jour 2 — GPO, sécurité, audit, réplication, SSO
 
 - TP05 — GPO de sécurisation poste : 1h15
 - TP06 — Politique mot de passe et verrouillage : 45 min
 - TP07 — Audit AD et investigation Blue Team : 1h30
 - TP08 — DC02, réplication et disponibilité : 1h15
 - TP09 — Maintenance, sauvegarde et dépannage : 45 min
+- TP10 — Intégration AD avec IIS et SSO Kerberos : 45 min à 1h, optionnel selon timing
 - Challenges : GPO, compte suspect, réplication : 30 à 45 min selon l'avancement
 
 ## Priorités pédagogiques
@@ -84,6 +85,7 @@ Si le groupe prend du retard, priorisez dans cet ordre :
 4. GPO appliquée et prouvée par `gpresult`.
 5. Audit des événements AD sensibles.
 6. Réplication DC02 et maintenance.
+7. Intégration applicative IIS et SSO Kerberos.
 
 Les challenges peuvent être utilisés comme exercices complets ou comme démonstrations guidées si le timing devient serré.
 

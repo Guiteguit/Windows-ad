@@ -15,4 +15,5 @@
 | Audit configuré | | Preuve : `auditpol /get /category:*` |
 | Événements retrouvés | | 4720, 4728, 4625 ou équivalents documentés |
 | DC02 et réplication validés | | Preuve : `repadmin /replsummary` |
+| SSO IIS/Kerberos validé | | Preuve : `setspn`, page IIS, `klist` |
 | Rapport clair | | Symptôme, preuve, cause, correction, validation |

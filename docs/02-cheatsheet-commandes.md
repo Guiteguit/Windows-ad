@@ -40,6 +40,20 @@ gpresult /h C:\Temp\rapport-gpo.html
 rsop.msc
 ```
 
+## IIS / SSO Kerberos
+
+```cmd
+setspn -L LAB\SRV01$
+setspn -Q HTTP/srv01.lab.local
+klist
+klist purge
+```
+
+```powershell
+Install-WindowsFeature Web-Server,Web-Windows-Auth,Web-ASP -IncludeManagementTools
+Import-Module WebAdministration
+```
+
 ## SMB / NTFS
 
 ```powershell

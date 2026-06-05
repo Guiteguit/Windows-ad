@@ -22,4 +22,6 @@ Captures minimales :
 - `Get-SmbShare`
 - `gpresult /r`
 - événements 4720 / 4728 / 4625 ;
-- `repadmin /replsummary`.
+- `repadmin /replsummary` ;
+- `setspn -L LAB\SRV01$` ;
+- `klist` montrant un ticket `HTTP/srv01.lab.local`.
