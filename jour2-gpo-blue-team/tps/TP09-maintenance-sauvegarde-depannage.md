@@ -243,7 +243,142 @@ WindowsImageBackup
 
 Ne modifiez pas manuellement son contenu.
 
-## 7. AD Recycle Bin
+## 7. Exemple de restauration System State
+
+Cette section est une explication. Ne lancez pas de restauration dans ce TP sans consigne explicite du formateur.
+
+Une restauration System State sur un contrôleur de domaine est une opération sensible. Elle peut impacter Active Directory, SYSVOL, le registre, les services système et la cohérence de réplication.
+
+### Dans quels cas restaurer ?
+
+Une restauration System State peut être envisagée dans des cas comme :
+
+- contrôleur de domaine corrompu après incident système ;
+- suppression ou corruption importante d'objets AD ;
+- problème grave sur SYSVOL ;
+- incident après mauvaise manipulation non récupérable simplement ;
+- besoin de reconstruire un DC à partir d'un état connu.
+
+Elle ne doit pas être le premier réflexe pour un incident simple.
+
+Avant de restaurer, vérifiez toujours si une solution moins risquée suffit :
+
+- corriger une configuration DNS ;
+- répliquer depuis un autre DC sain ;
+- restaurer un objet via AD Recycle Bin ;
+- recréer proprement un objet ou une GPO ;
+- utiliser un snapshot uniquement dans un lab isolé.
+
+### Non-authoritative restore
+
+Une restauration non-authoritative remet le contrôleur de domaine dans l'état de la sauvegarde, puis Active Directory récupère les changements plus récents depuis les autres DC.
+
+Cas typique :
+
+```text
+DC01 est cassé localement.
+DC02 contient une version AD plus récente et saine.
+On restaure DC01, puis DC01 se resynchronise depuis DC02.
+```
+
+C'est le scénario le plus courant quand il reste au moins un autre contrôleur de domaine sain.
+
+Exemple de commande, à ne pas exécuter dans ce TP :
+
+```cmd
+wbadmin get versions -backupTarget:E:
+wbadmin start systemstaterecovery -version:MM/JJ/AAAA-HH:MM -backupTarget:E: -quiet
+```
+
+La valeur `-version` doit être remplacée par une version réellement affichée par :
+
+```cmd
+wbadmin get versions -backupTarget:E:
+```
+
+### Authoritative restore
+
+Une restauration authoritative sert à déclarer que certains objets restaurés doivent redevenir la référence et être répliqués vers les autres DC.
+
+Cas typique :
+
+```text
+Une OU critique a été supprimée.
+La suppression a déjà été répliquée sur tous les DC.
+On restaure une sauvegarde puis on marque l'OU comme authoritative.
+```
+
+Ce scénario est plus risqué et demande une procédure maîtrisée avec `ntdsutil`.
+
+Exemple conceptuel :
+
+```text
+1. Démarrer le DC en Directory Services Restore Mode.
+2. Restaurer le System State.
+3. Utiliser ntdsutil pour marquer un objet ou une OU comme authoritative.
+4. Redémarrer normalement.
+5. Laisser l'objet restauré se répliquer vers les autres DC.
+```
+
+Exemple conceptuel avec `ntdsutil`, à ne pas exécuter dans ce TP :
+
+```cmd
+ntdsutil
+activate instance ntds
+authoritative restore
+restore subtree "OU=RH,OU=_Utilisateurs,DC=lab,DC=local"
+quit
+quit
+```
+
+### Impacts d'une restauration
+
+Une restauration AD peut avoir des effets importants :
+
+- interruption de service sur le contrôleur restauré ;
+- redémarrage en mode spécial ;
+- risque d'écraser des changements récents ;
+- risque d'incohérence si plusieurs DC existent ;
+- réplication d'objets restaurés vers les autres DC ;
+- perte potentielle de modifications faites après la sauvegarde ;
+- impact sur l'authentification, les GPO et SYSVOL ;
+- besoin de contrôler les journaux et la réplication après retour en ligne.
+
+### Bonne manière de procéder
+
+Avant restauration :
+
+1. identifier précisément le problème ;
+2. vérifier s'il reste un DC sain ;
+3. vérifier l'âge de la sauvegarde ;
+4. vérifier si AD Recycle Bin suffit ;
+5. prendre un snapshot uniquement si vous êtes en lab ;
+6. documenter l'état initial ;
+7. prévenir les utilisateurs ou équipes concernées en production ;
+8. planifier une fenêtre d'intervention.
+
+Pendant restauration :
+
+1. utiliser la bonne sauvegarde ;
+2. choisir non-authoritative ou authoritative selon le besoin ;
+3. ne restaurer que ce qui est nécessaire ;
+4. éviter d'improviser sur un DC de production.
+
+Après restauration :
+
+1. vérifier `dcdiag` ;
+2. vérifier `repadmin /replsummary` ;
+3. vérifier les journaux Directory Service, DNS Server et System ;
+4. vérifier les objets ou services restaurés ;
+5. documenter la preuve de retour à la normale.
+
+À retenir :
+
+```text
+Une sauvegarde n'a de valeur que si la restauration est comprise, testée et documentée.
+```
+
+## 8. AD Recycle Bin
 
 Vérifiez l'état de la corbeille Active Directory :
 
@@ -265,7 +400,7 @@ System State Backup aide à restaurer un contrôleur de domaine ou l'état AD.
 Les deux mécanismes sont complémentaires.
 ```
 
-## 8. Méthode de dépannage attendue
+## 9. Méthode de dépannage attendue
 
 Pour un incident AD, appliquez toujours cette méthode :
 
@@ -322,6 +457,7 @@ Déposez dans votre compte rendu :
 - une capture de la commande `wbadmin start systemstatebackup -backupTarget:E: -quiet` terminée ;
 - une capture de `wbadmin get versions -backupTarget:E:` ;
 - une réponse courte sur le rôle du System State ;
+- une réponse courte expliquant la différence entre restauration non-authoritative et authoritative ;
 - une réponse courte sur l'AD Recycle Bin.
 
 ## Questions

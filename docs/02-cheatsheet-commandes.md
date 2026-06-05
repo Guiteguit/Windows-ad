@@ -93,3 +93,9 @@ Get-Volume -DriveLetter E
 wbadmin start systemstatebackup -backupTarget:E: -quiet
 wbadmin get versions -backupTarget:E:
 ```
+
+Exemple de restauration à connaître, ne pas exécuter sans procédure :
+
+```cmd
+wbadmin start systemstaterecovery -version:MM/JJ/AAAA-HH:MM -backupTarget:E: -quiet
+```

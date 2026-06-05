@@ -25,5 +25,6 @@ Captures minimales :
 - `repadmin /replsummary` ;
 - disque `BACKUP` dédié à la sauvegarde ;
 - `wbadmin get versions -backupTarget:E:` ;
+- explication non-authoritative / authoritative restore ;
 - `setspn -L LAB\SRV01$` ;
 - `klist` montrant un ticket `HTTP/srv01.lab.local`.
