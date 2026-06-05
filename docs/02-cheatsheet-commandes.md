@@ -79,3 +79,17 @@ dcdiag
 repadmin /replsummary
 repadmin /showrepl
 ```
+
+## Sauvegarde AD
+
+```powershell
+Install-WindowsFeature Windows-Server-Backup
+Get-WindowsFeature Windows-Server-Backup
+Get-Disk
+Get-Volume -DriveLetter E
+```
+
+```cmd
+wbadmin start systemstatebackup -backupTarget:E: -quiet
+wbadmin get versions -backupTarget:E:
+```

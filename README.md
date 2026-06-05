@@ -71,7 +71,7 @@ Le planning ci-dessous est pensé pour une journée de 7h environ, avec des paus
 - TP06 — Politique mot de passe et verrouillage : 45 min
 - TP07 — Audit AD et investigation Blue Team : 1h30
 - TP08 — DC02, réplication et disponibilité : 1h15
-- TP09 — Maintenance, sauvegarde et dépannage : 45 min
+- TP09 — Maintenance, sauvegarde et dépannage : 45 min à 1h15
 - TP10 — Intégration AD avec IIS et SSO Kerberos : 45 min à 1h, optionnel selon timing
 - Challenges : GPO, compte suspect, réplication : 30 à 45 min selon l'avancement
 
