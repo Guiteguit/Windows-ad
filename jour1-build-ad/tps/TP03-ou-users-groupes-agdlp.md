@@ -271,7 +271,10 @@ Déposez dans votre compte rendu :
 - une capture de `Get-ADGroupMember "GG_RH"` ;
 - une capture de `Get-ADGroupMember "DL_SHARE_RH_RW"` ;
 - une capture de `Get-ADPrincipalGroupMembership "user.rh1" | Select-Object Name` ;
-- une courte explication du chemin AGDLP pour `user.rh1`.
+- une courte explication de la chaîne d'accès prévue pour `user.rh1` :
+  `user.rh1 -> GG_RH -> DL_SHARE_RH_RW -> futur accès au dossier RH`.
+
+Explication attendue : indiquez que `user.rh1` représente un compte utilisateur RH, que `GG_RH` représente le rôle métier RH, puis que `DL_SHARE_RH_RW` représente le groupe de permission qui recevra les droits sur la ressource `RH` dans le TP04.
 
 ## Questions
 
