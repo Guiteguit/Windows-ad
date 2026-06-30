@@ -43,7 +43,7 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4720,4728,4729,4738,4625,
 Pour vérifier un compte :
 
 ```powershell
-Get-ADUser backup-admin -Properties Enabled,Created,Modified,MemberOf
+Get-ADUser <compte_suspect> -Properties Enabled,Created,Modified,MemberOf
 ```
 
 Pour vérifier un groupe sensible :

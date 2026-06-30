@@ -36,3 +36,7 @@ TP10  Intégration AD avec IIS et SSO Kerberos
 ```
 
 `TP10` peut être réalisé en fin de journée ou utilisé comme démonstration guidée si le timing est serré.
+
+## Challenges
+
+Les challenges du jour 2 sont prévus pour être préparés par le formateur avant le diagnostic étudiant. Les énoncés ne donnent pas la cause racine : les étudiants doivent observer, formuler des hypothèses, vérifier puis corriger.
