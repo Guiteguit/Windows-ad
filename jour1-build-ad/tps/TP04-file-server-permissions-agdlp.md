@@ -310,7 +310,7 @@ Déposez dans votre compte rendu :
 - une capture montrant `user.rh1` capable d'écrire dans `\\SRV01\RH` ;
 - une capture montrant `user.rh1` refusé sur `\\SRV01\Finance` ;
 - une capture montrant `user.rh1` en lecture seule sur `\\SRV01\Commun` ;
-- une courte explication du chemin AGDLP utilisé pour le dossier RH.
+- une courte explication de la chaîne d'accès prévue pour utilisé pour le dossier RH.
 
 ## Questions
 
