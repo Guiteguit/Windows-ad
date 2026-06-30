@@ -2,7 +2,7 @@
 
 [CmdletBinding()]
 param(
-    [string]$InterfaceAlias = "Ethernet",
+    [string]$InterfaceAlias = "Ethernet0",
 
     [string]$BrokenDns = "192.168.56.254"
 )
